@@ -1,0 +1,86 @@
+<!doctype html>
+<html  class="no-js" lang="en">
+<head>
+   {% load staticfiles %}
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="{% static 'ge/css/normalize.css' %}" />
+   <link rel="stylesheet" href="{% static 'ge/css/foundation.css' %}" />
+   <link rel="stylesheet" href="{% static 'ge/css/app.css' %}" />
+   <script src="{% static 'ge/js/vendor/modernizr.js' %}"></script>
+   <title>{% block title %}Ханты-Мансийскгаз{% endblock %}</title>
+   
+   
+</head>
+{% load i18n %}
+<body>
+    <div class="off-canvas-wrap" data-offcanvas>
+         <div class="inner-wrap">
+           <nav class="tab-bar">
+               <section class="left-small">
+                 <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+               </section>
+               
+                <section class="middle tab-bar-section">
+                   <h1 class="title"> МП Ханты-Мансийскгаз</h1>
+                </section>
+                
+                <section class="right-small">
+                   <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                </section>              
+           </nav>
+           
+           <aside class="left-off-canvas-menu">
+               <ul class="off-canvas-list">
+                   <li><label>МЕНЮ</label></li>
+                   
+                   {% if perms.pto %}
+                       <li><label>ПТО</label></li>
+                       <li><a href="/pto/">Обьекты Газ.</a></li>
+                   {% endif %}
+                                      
+                   <li><label>Приложения</label></li>
+                   <li><a href="/admin/">АДМИН</a></li>                   
+               </ul>
+            </aside>
+            
+            <aside class="right-off-canvas-menu">
+              <ul class="off-canvas-list">
+                   <li><label>ПОЛЬЗОВАТЕЛЬ</label></li>
+                   
+                   {% if user.is_authenticated %}
+                      <li><a>Добро пожаловать</a></li>
+                      <li><label>{{ user.username }}</label></li>
+                      <li><label>{{ user.last_name }} {{ user.first_name }}</label></li>
+                      <li><a href="/ge/logout/">Выйти</a></li>
+                   {% else %}
+                      <li><a href="/ge/login/">Войти</a></li>
+                   {% endif %}
+                   
+              </ul>
+            </aside>
+            
+            <section class="main-section">
+<!-- Контент приложения -->
+{% block ge_content %}{% endblock %}
+      
+           
+
+      
+     
+     
+ 
+ 
+<!-- Закончено приложения --> 
+             </section>      
+            <a class="exit-off-canvas"></a>
+           </div>
+     </div>
+  <script src="{% static 'ge/js/vendor/jquery.js' %}"></script>
+  <script src="{% static 'ge/js/foundation/foundation.js' %}"></script>
+  <script src="{% static 'ge/js/foundation/foundation.offcanvas.js' %}"></script>
+  <script>
+    $(document).foundation();
+  </script>  
+</body>
+</html>

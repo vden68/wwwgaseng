@@ -18,7 +18,8 @@ class Osnovanie(models.Model):
     def __str__(self):
         return self.ge_osnovanie
 
-#Обьекты газовой сети    
+
+#Обьекты газовой сети
 class Objekt(models.Model):
     ge_osnovanie = models.ForeignKey('Osnovanie', verbose_name = 'Основание')
     ge_nomereestr = models.CharField('Архивный номер', max_length=10)
@@ -209,6 +210,7 @@ class Spr_regulir_ustroystvo(models.Model):
     def __str__(self):
         return self.ge_ustroystvo
     
+
 # Справочник Узлов (Переходы, тройники и т.д.)
 class Spr_uzel(models.Model):
     ge_uzel = models.CharField('Узел', max_length=100)
